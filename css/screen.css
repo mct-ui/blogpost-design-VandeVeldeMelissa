@@ -1,4 +1,22 @@
 /*
+    Fonts
+    --- 
+    @font-face declarations
+*/
+
+@font-face {
+    font-family: "Inter Web";
+    font-weight: 400;
+    src: url("../fonts/Inter-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter Web";
+    font-weight: 700;
+    src: url("../fonts/Inter-Bold.woff2") format("woff2");
+}
+
+/*
     Elements: Page
     ---
     Default markup for page level elements
@@ -7,14 +25,11 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
-    color: #111;
-    padding: 48px 24px 24px;
-}
-
-body {
-    max-width: 42em;
-    margin: 0 auto;
+    font-family: droid-serif, serif;
+    /* font-family: "Inter Web", "Helvetica Neue", Helvetica, arial, sans-serif; */
+    color: #5C6366;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /*
@@ -25,7 +40,7 @@ body {
  */
 
 ::selection {
-    background: #e85e00;
+    background: #00A1E6;
     color: white;
     text-shadow: none;
 }
@@ -47,8 +62,15 @@ img {
     Default markup for typographic elements
 */
 
+h1,
+h2,
+h3 {
+    font-family: "Inter Web", sans-serif;
+    color: #17181A;
+}
+
 h1 {
-    font-family: "Times New Roman", serif;
+    font-family: "Playfair Display", serif;
     font-size: 36px;
     font-weight: normal;
     line-height: 40px;
@@ -59,6 +81,11 @@ h2 {
     font-size: 23px;
     line-height: 32px;
     margin: 0 0 24px;
+}
+
+/* Als h2 direct na iets komt dan: */
+* + h2 {
+    margin-top: 48px; 
 }
 
 h3 {
@@ -123,18 +150,81 @@ hr {
 }
 
 a {
-    color: RoyalBlue;
+    color: #00A1E6;
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: BlueViolet;
+    color: #00A1E6;
 }
 
 a:hover,
 a:focus {
-    color: Crimson;
+    color: #1ABAFF;
+}
+
+/*
+    Components: Author
+*/
+
+.c-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+
+.c-author__image {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%; 
+    /* Door de border-radius op 100% blijft de avatar altijd een cirkel. Hoe groot je hem ook maakt. 
+    Let er wel op: dit werkt enkel voor vierkante afbeeldingen. */
+    margin-right: 16px;
+}
+
+.c-author__name,
+.c-author__meta {
+    margin-bottom: 0;
+}
+
+.c-author__name {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.c-author__meta {
+    font-family: "Inter", "Helvetica Neue", Helvetica, arial, sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+/*
+    Component: article
+*/
+
+.c-article__header,
+.c-article__body {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.c-article__header {
+    padding: 24px 24px 0; /* Is gelijk aan padding: 24px 24px 0 24px (links en rechts gelijk) */
+}
+
+.c-article__body {
+    padding: 0 24px;
+}
+
+/* 
+    Utility: max-width
+*/
+
+
+.u-max-width-sm {
+    max-width: 36em;
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -144,18 +234,40 @@ a:focus {
 /* Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px) {
-    html {
-        padding: 48px 48px 24px;
-    }
     h1 {
         font-size: 58px;
         line-height: 64px;
+    }
+    .c-article__header {
+        padding: 48px 48px 24px;
+    }
+    .c-article__author {
+        padding-bottom: 24px;
+    }
+    .c-article__body {
+        padding: 24px 48px;
     }
 }
 
 /* Large devices (landscape tablets, desktops, 992px and up) */
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .c-article__body {
+        display: flex;
+        gap: 24px;
+    }
+    .c-article__author {
+        width: 25%;
+        padding-right: 24px;
+    }
+    .c-article__content {
+        width: 75%;
+    }
+    .c-author {
+        flex-direction: column;
+        align-items: start;
+    }
+}
 
 /* Extra large devices (large desktops, 1200px and up) */
 
